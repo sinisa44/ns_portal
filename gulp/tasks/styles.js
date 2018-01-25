@@ -15,3 +15,13 @@ let mixins = require('postcss-mixins');
 				})
 				.pipe(gulp.dest('./app/temp/styles'));
 		});
+
+gulp.task('adminStyle',function(){
+	return gulp.src('./admin/app/assets/styles/styles.css')
+		.pipe(postCss([cssImport,mixins,cssVars,nested,autoPrefixer]))
+		.on('error',function(errorInfo){
+			console.log(errorInfo.toString());
+			this.emit('end');
+		})
+		.pipe(gulp.dest('./admin/temp/styles'));
+});
