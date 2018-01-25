@@ -1,18 +1,22 @@
 let gulp = require('gulp');
 let watch = require('gulp-watch');
 let browserSync = require('browser-sync').create();
+let connect = require('gulp-connect-php7');
 
-gulp.task('browserSync', function() {
-	browserSync.init({
-		server: ['app', 'admin']
+gulp.task('connect-sync', function() {
+  connect.server({}, function (){
+    browserSync.init({
+			proxy: '127.0.0.1/NS_blog/app'
+	  });
 	});
-})
+});
 
-gulp.task('watch', ['browserSync'], function(){
+gulp.task('watch', ['connect-sync'], function(){
 
-	watch(["./app/index.html", "./admin/index.html"], function(){
+	watch('./app/**/*.php').on('change', function () {
 		browserSync.reload();
 	});
+
 
 	watch('./app/assets/styles/**/*.css', function(){
 		gulp.start('cssInsert');
