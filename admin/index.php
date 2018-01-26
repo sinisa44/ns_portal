@@ -8,6 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>cao kako je </h1>
+    <div class="navigation">
+        <a href="#">Posts and Comments</a>
+        <a href="#">Users</a>
+        <a href="#">Site options</a>
+        <a href="#">Other</a>
+    </div>
 </body>
 </html>
